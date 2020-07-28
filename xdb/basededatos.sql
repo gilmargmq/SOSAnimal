@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 25-07-2020 a las 03:33:25
--- Versión del servidor: 10.3.23-MariaDB
--- Versión de PHP: 7.3.6
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 28-07-2020 a las 03:41:02
+-- Versión del servidor: 10.1.32-MariaDB
+-- Versión de PHP: 5.6.36
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `aljaniac_jhenery`asd
+-- Base de datos: `sosanimal`
 --
 
 -- --------------------------------------------------------
@@ -72,7 +72,7 @@ CREATE TABLE `clients` (
   `website` varchar(255) DEFAULT NULL,
   `bank` varchar(255) DEFAULT NULL,
   `bank_account` varchar(255) DEFAULT NULL,
-  `description` text DEFAULT NULL,
+  `description` text,
   `updated_at` date NOT NULL,
   `created_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -92,7 +92,7 @@ CREATE TABLE `clinica_veterinaria` (
   `ubicacion` varchar(45) DEFAULT NULL,
   `celular` varchar(45) DEFAULT NULL,
   `email` varchar(45) NOT NULL,
-  `redes_sociales` text DEFAULT NULL
+  `redes_sociales` text
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -100,8 +100,9 @@ CREATE TABLE `clinica_veterinaria` (
 --
 
 INSERT INTO `clinica_veterinaria` (`id`, `usuario`, `password`, `nombre`, `ruc`, `ubicacion`, `celular`, `email`, `redes_sociales`) VALUES
-(1, 'clinica1', 'asdfg', 'veterinaria1', '12345678912', 'ubicacion1', 'celular1', 'email1', NULL),
-(2, 'clnica2', 'asdfg', 'veterinaria2', '12345678913', 'ubicacion2', 'celular2', 'email2', NULL);
+(1, 'clinica1', 'clinica1234', 'Animal Planet', '12345678912', 'Av. El sol', '963852741', 'animalplanet@gmail.com', 'Animal Planet'),
+(2, 'clinica2', 'clinica23456', 'Scooby Doo', '12345678913', 'Av. El sol', '987654321', 'scooby@gmail.com', 'Scooby Doo'),
+(3, 'clinica3', 'clinica3456', 'Beethoven', '12345678012', 'Av. El sol', '951628473', 'beet.clinivet@gmail.com', 'Beethoven');
 
 -- --------------------------------------------------------
 
@@ -207,7 +208,7 @@ INSERT INTO `invitations` (`id`, `user_id`, `client_id`, `status`) VALUES
 CREATE TABLE `invitation_settings` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) DEFAULT NULL,
-  `content` text DEFAULT NULL
+  `content` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -271,7 +272,7 @@ CREATE TABLE `settings` (
   `website` varchar(255) DEFAULT NULL,
   `bank` varchar(255) DEFAULT NULL,
   `bank_account` varchar(255) DEFAULT NULL,
-  `description` text DEFAULT NULL,
+  `description` text,
   `receive_emails` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -324,7 +325,7 @@ CREATE TABLE `ticket_histories` (
   `from_id` int(11) UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` text NOT NULL,
-  `state` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `state` tinyint(1) UNSIGNED NOT NULL DEFAULT '0',
   `updated_at` date NOT NULL,
   `created_at` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -411,11 +412,11 @@ CREATE TABLE `users` (
   `id` int(11) UNSIGNED NOT NULL,
   `role_id` int(11) UNSIGNED NOT NULL,
   `parent_id` int(11) UNSIGNED DEFAULT NULL,
-  `language_id` int(11) UNSIGNED NOT NULL DEFAULT 1,
+  `language_id` int(11) UNSIGNED NOT NULL DEFAULT '1',
   `name` varchar(200) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(64) NOT NULL,
-  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT 1,
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT '1',
   `remember_token` varchar(100) DEFAULT NULL,
   `updated_at` date NOT NULL,
   `created_at` date NOT NULL
